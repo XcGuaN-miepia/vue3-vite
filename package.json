@@ -6,7 +6,6 @@
     "build": "vite build"
   },
   "dependencies": {
-    "babel-eslint": "^10.1.0",
     "vue": "^3.0.4",
     "vuex": "^4.0.0"
   },
