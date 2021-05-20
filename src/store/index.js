@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 // 创建一个新的 store 实例
 const store = createStore({
-  state () {
+  state() {
     return {
       count: 0
     }
@@ -13,7 +13,7 @@ const store = createStore({
     }
   },
   mutations: {
-    increment (state) {
+    increment(state) {
       state.count++
     }
   }

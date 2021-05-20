@@ -1,19 +1,26 @@
 <template>
-  <div >
-    <input v-model="text" type="text" />
-    <div v-html="text" style="width: 200px;"></div>
-    <button @click="$fourceUpdate()">refresh</button>
+  <div>
     {{ count }}
+    {{ a }}
+    <button @click="aPlus">
+      a++
+    </button>
   </div>
 </template>
 
 <script lang="ts">
-import { ref } from '@vue/reactivity'
+import { ref } from 'vue'
 export default {
   name: 'App',
-  data() {
+  setup() {
+    const aA = ref(1)
+    const aPlus = function() {
+      aA.value = aA.value + 1
+    }
+
     return {
-      text: ''
+      aA,
+      aPlus
     }
   },
   computed: {
