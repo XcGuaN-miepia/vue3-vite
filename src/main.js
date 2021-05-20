@@ -1,12 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import store from './store'
-import './assets/css/index.scss'
-
-// 全局样式
-// import '@/assets/css/index.scss'
+import router from './router'
+import 'normalreset.css/normalreset.css' // 重置样式
 
 const app = createApp(App)
 
-app.use(store) // store
+app.use(store)
+app.use(router)
 app.mount('#app')
