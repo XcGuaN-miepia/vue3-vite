@@ -1,29 +1,22 @@
 <template>
   {{ count }}
-  {{ a }}
-  <button @click="a++">
-    a++
-  </button>
+  <div />
+  <button />
 </template>
 
-<script>
+<script lang="ts">
 import { ref } from '@vue/reactivity'
+import { useStore } from 'vuex'
+import { key as commonKey } from '@/store/common'
 export default {
   name: 'Home',
   setup() {
     const a = ref(1)
-    const aPlus = function() {
-      a.value = a.value + 1
-    }
+    const count = useStore(commonKey).state.count
 
     return {
       a,
-      aPlus
-    }
-  },
-  computed: {
-    count: function() {
-      return this.$store.getters.getCount
+      count
     }
   },
   mounted() {

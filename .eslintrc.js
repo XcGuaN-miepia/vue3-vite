@@ -9,6 +9,7 @@ module.exports = {
     'plugin:vue/vue3-recommended'
   ],
   'parserOptions': {
+    'parser': 'babel-eslint',
     'ecmaVersion': 12,
     'sourceType': 'module'
   },
@@ -32,8 +33,6 @@ module.exports = {
     'space-before-blocks': ['error'], // {} 前必须有空格，例如 function() {}
     'camelcase': ['error', { 'properties': 'never' }], // 驼峰变量命名，而且属性名不会要求是驼峰，变量名要求是
     'padded-blocks': ['error', 'never'], // 行内不能有空行
-    'comma-dangle': ['error', 'never'], // 对象最后不允许拖尾逗号
-    'interface-name' : [true, 'never-prefix'], // 允许interface
-    'module-name' : [true, 'never-prefix'] // 允许module
+    'comma-dangle': ['error', 'never'] // 对象最后不允许拖尾逗号
   }
 }

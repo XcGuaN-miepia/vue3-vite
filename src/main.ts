@@ -9,8 +9,9 @@ const app = createApp(App)
 
 app.config.globalProperties.$http = axios // axios全局配置
 
-store.forEach(({module, key}) => {
+store.forEach(({ module, key }) => {
   app.use(module, key)
 })
+
 app.use(router)
 app.mount('#app')

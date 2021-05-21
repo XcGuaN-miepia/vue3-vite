@@ -1,5 +1,3 @@
-import { createStore } from 'vuex'
-
 import CommonStore, { key as commonKey } from './common'
 
 const modules = [{
