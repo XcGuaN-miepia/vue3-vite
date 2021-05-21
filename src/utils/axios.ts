@@ -15,7 +15,7 @@ request.interceptors.response.use(response => {
 
   return res
 }, err => {
-  console.error(err)
+  console.log(err)
 })
 
 export default request

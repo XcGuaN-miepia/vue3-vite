@@ -1,7 +1,12 @@
 <template>
   {{ count }}
-  <div />
-  <button />
+  {{ a }}
+  <button @click="a++">
+    a++
+  </button>
+  <button @click="getData">
+    axios
+  </button>
 </template>
 
 <script lang="ts">
@@ -20,7 +25,14 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('increment')
+
+  },
+  methods: {
+    getData() {
+      this.$http({
+        url: '/test'
+      })
+    }
   }
 }
 </script>

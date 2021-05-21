@@ -8,5 +8,12 @@ export default {
     alias: {
       '@': path.resolve(__dirname, './src')
     }
+  },
+  server: {
+    proxy: {
+      '/test': {
+        target: 'http://127.0.0.1:7001/'
+      }
+    }
   }
 }
