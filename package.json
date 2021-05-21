@@ -6,6 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "normalreset.css": "^1.1.0",
     "path": "^0.12.7",
     "vue": "^3.0.4",

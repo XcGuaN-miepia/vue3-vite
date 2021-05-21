@@ -1,12 +1,12 @@
 <template>
   {{ count }}
   {{ a }}
-  <button @click="aPlus">
+  <button @click="a++">
     a++
   </button>
 </template>
 
-<script lang="ts">
+<script>
 import { ref } from '@vue/reactivity'
 export default {
   name: 'Home',
