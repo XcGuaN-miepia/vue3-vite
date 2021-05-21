@@ -17,9 +17,9 @@ module.exports = {
     'vue'
   ],
   'rules': {
-    'indent': ['error', 2],
-    'quotes': ['error', 'single'],
-    'semi': ['error', 'never'],
+    'indent': ['error', 2], // 缩进使用2个空格
+    'quotes': ['error', 'single'], // 强制单引号
+    'semi': ['error', 'never'], // 不允许后面有分号
     'vue/require-default-prop': 'off', // 不需要prop设置默认值
     'object-curly-spacing': ['error', 'always'], // 括号必须有空格
     'space-before-function-paren': ['error', 'never'], // 函数后面不允许有空格
