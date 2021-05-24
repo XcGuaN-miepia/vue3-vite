@@ -4,6 +4,7 @@ import store from './store'
 import router from './router'
 import axios from '@/utils/axios'
 import 'normalreset.css/normalreset.css' // 重置样式
+import '@/assets/css/flex.scss'
 
 const app = createApp(App)
 

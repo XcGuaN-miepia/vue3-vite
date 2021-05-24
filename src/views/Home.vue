@@ -1,12 +1,19 @@
 <template>
-  {{ count }}
-  {{ a }}
-  <button @click="a++">
-    a++
-  </button>
-  <button @click="getData">
-    axios
-  </button>
+  <div
+    class="flex-v flex-hc"
+    style="height: 100vh;"
+  >
+    <div class="flex-h flex-hc">
+      {{ count }}
+      {{ a }}
+      <button @click="a++">
+        a++
+      </button>
+      <button @click="getData">
+        axios
+      </button>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
