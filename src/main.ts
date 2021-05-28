@@ -3,8 +3,10 @@ import App from './App.vue'
 import store from './store'
 import router from './router'
 import axios from '@/utils/axios'
+import ElementPlus from 'element-plus'
 import 'normalreset.css/normalreset.css' // 重置样式
-import '@/assets/css/flex.scss'
+import '@/assets/css/flex.scss' // 布局样式
+import 'element-plus/lib/theme-chalk/index.css' // element样式
 
 const app = createApp(App)
 
@@ -15,4 +17,5 @@ store.forEach(({ module, key }) => {
 })
 
 app.use(router)
+app.use(ElementPlus)
 app.mount('#app')

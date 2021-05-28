@@ -12,6 +12,7 @@
       <button @click="getData">
         axios
       </button>
+      <el-affix />
     </div>
   </div>
 </template>

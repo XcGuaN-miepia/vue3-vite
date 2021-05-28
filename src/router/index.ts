@@ -1,9 +1,10 @@
 import * as VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 
-const routes = [{
+const routes:VueRouter.RouteRecordRaw[] = [{
   path: '/',
-  component: Home
+  component: Home,
+  children: []
 }]
 
 const router = VueRouter.createRouter({
