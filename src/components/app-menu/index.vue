@@ -60,9 +60,11 @@
   </el-menu>
 </template>
 
-<script>
+<script lang="ts">
 export default {
-
+  methods: {
+    // TODO: 跳转处理
+  }
 }
 </script>
 
