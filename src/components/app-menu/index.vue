@@ -52,9 +52,6 @@ export default {
     return {
       menuList
     }
-  },
-  methods: {
-    // TODO: 跳转处理
   }
 }
 </script>
