@@ -7,6 +7,13 @@
     active-text-color="#409EFF"
     @select="index => $router.push(index)"
   >
+    <div class="header">
+      <img
+        src="~@/assets/logo.png"
+        class="logo"
+      >
+      <span class="title">管理平台</span>
+    </div>
     <template
       v-for="menu in menuList"
       :key="menu.path"
@@ -62,5 +69,20 @@ export default {
 .menu-container {
   height: 100%;
   border-right: 0;
+
+  .header {
+    padding: 15px;
+    color: #fff;
+
+    .logo {
+      width: 34px;
+      height: 34px;
+    }
+
+    .title {
+      margin-left: 10px;
+    }
+  }
+
 }
 </style>
