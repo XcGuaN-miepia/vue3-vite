@@ -1,13 +1,9 @@
 <template>
   <div class="header-container flex-h flex-vc flex-hsb">
-    <el-avatar
-      :size="40"
-      class="header-avatar"
-      src="https://empty"
-      @error="errorHandler"
-    >
-      <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png">
-    </el-avatar>
+    <i
+      class="el-icon-s-home"
+      @click="$router.push('/')"
+    />
     <el-dropdown>
       <div class="flex-h flex-vc header-avatar">
         <el-avatar
@@ -37,6 +33,12 @@ export default {
 <style lang="scss" scoped>
 .header-container {
   height: 100%;
+
+  [class^=el-icon-] {
+    font-size: 26px;
+    cursor: pointer;
+    color: #fff;
+  }
 
   .header-avatar {
     width: 150px;
