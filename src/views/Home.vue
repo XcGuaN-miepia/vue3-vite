@@ -7,7 +7,7 @@
       <el-header>
         <app-header />
       </el-header>
-      <el-main>Main</el-main>
+      <el-main><router-view /></el-main>
       <el-footer>Footer</el-footer>
     </el-container>
   </el-container>
@@ -30,5 +30,7 @@ export default {
 @import '@/assets/css/var.scss';
 :deep(.el-header) {
   background: $skin_color;
+  height: 65px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 21, 41, 0.12);
 }
 </style>

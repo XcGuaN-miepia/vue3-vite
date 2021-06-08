@@ -37,7 +37,7 @@ export default {
   [class^=el-icon-] {
     font-size: 26px;
     cursor: pointer;
-    color: #fff;
+    // color: #fff;
   }
 
   .header-avatar {
