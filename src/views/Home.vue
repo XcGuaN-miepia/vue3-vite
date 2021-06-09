@@ -20,11 +20,9 @@
             :label="item.title"
             :name="item.key"
           />
-          <router-view v-slot="{ Component }">
-            <keep-alive>
-              <div id="container" />
-            </keep-alive>
-          </router-view>
+          <keep-alive>
+            <div id="container" />
+          </keep-alive>
         </el-tabs>
       </el-main>
       <el-footer>Footer</el-footer>
@@ -67,11 +65,10 @@ export default {
     }
   },
   mounted() {
-    console.log('aaa', document.querySelector('#container'))
     registerMicroApps([
       {
         name: 'admin',
-        entry: '//localhost:3001',
+        entry: 'http://139.198.186.30/vue3-vite-mirco/',
         container: '#container',
         activeRule: '/'
       }
