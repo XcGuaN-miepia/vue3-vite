@@ -13,10 +13,12 @@ const routes:VueRouter.RouteRecordRaw[] = [{
 }, {
   path: '/404',
   component: NotFound
-}, {
-  path: '/:pathMatch(.*)*',
-  redirect: '/404'
-}]
+}
+//  {
+//   path: '/:pathMatch(.*)*',
+//   redirect: '/404'
+// }
+]
 
 const router = VueRouter.createRouter({
   history: VueRouter.createWebHistory(),

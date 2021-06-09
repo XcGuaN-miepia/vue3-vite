@@ -45,24 +45,6 @@ export const key: InjectionKey<Store<CommonStateType>> = Symbol()
 
 export default createStore<CommonStateType>({
   state,
-  getters: {
-    /**
-     * @description: 获取菜单列表
-     * @param {*} state
-     * @return {*}
-     */
-    getMenuList(state): Menu[] {
-      return state.menuList
-    },
-    /**
-     * @description: 获取选项卡列表
-     * @param {*} state
-     * @return {*}
-     */
-    getTabList(state): Tab[] {
-      return state.tabList
-    }
-  },
   mutations: {
     /**
      * @description: 添加选项卡
@@ -80,10 +62,9 @@ export default createStore<CommonStateType>({
      * @param {string} payload
      */
     removeTabList(state, payload: string) {
-      console.log(state.tabList )
+      const index = state.tabList.findIndex(item => item.key === payload)
 
-      state.tabList = state.tabList.filter(item => item.key !== payload)
-      console.log(state.tabList )
+      state.tabList.splice(index, 1)
     }
   }
 })

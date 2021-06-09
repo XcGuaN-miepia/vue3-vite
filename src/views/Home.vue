@@ -9,22 +9,20 @@
       </el-header>
       <el-main>
         <el-tabs
-          v-model="editableTabsValue"
+          v-model="activeTab"
           type="card"
           closable
           @tab-remove="removeTab"
         >
           <el-tab-pane
-            v-for="item in editableTabs"
+            v-for="item in tabs"
             :key="item.key"
             :label="item.title"
             :name="item.key"
           />
-          {{ editableTabs }}
-
           <router-view v-slot="{ Component }">
             <keep-alive>
-              <component :is="Component" />
+              <div id="container" />
             </keep-alive>
           </router-view>
         </el-tabs>
@@ -40,8 +38,9 @@ import AppMenu from '@/components/app-menu/index.vue'
 
 import { key as CommomKey } from '@/store/common'
 import { useStore } from 'vuex'
-import { ref } from '@vue/reactivity'
+import { useRoute } from 'vue-router'
 
+import { registerMicroApps, start } from 'qiankun'
 export default {
   name: 'Home',
   components: {
@@ -50,7 +49,9 @@ export default {
   },
   setup() {
     const commonStore = useStore(CommomKey)
-    const editableTabs = ref(commonStore.getters.getTabList) // 获取选项卡
+    const tabs = commonStore.state.tabList // 获取选项卡
+    const activeTab = useRoute().path
+
     /**
      * @description: 删除选项卡
      * @param {string} tab
@@ -60,9 +61,23 @@ export default {
     }
 
     return {
-      editableTabs,
+      tabs,
+      activeTab,
       removeTab
     }
+  },
+  mounted() {
+    console.log('aaa', document.querySelector('#container'))
+    registerMicroApps([
+      {
+        name: 'admin',
+        entry: '//localhost:3001',
+        container: '#container',
+        activeRule: '/'
+      }
+    ])
+    // 启动 qiankun
+    start()
   }
 }
 </script>

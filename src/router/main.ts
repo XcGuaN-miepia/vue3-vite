@@ -11,6 +11,10 @@ const CommonRouter: RouteRecordRaw[] = [{
   name: '测试2',
   path: '/test2',
   component: Test1
+}, {
+  name: '测试3',
+  path: '/test3',
+  component: Test1
 }]
 
 export default CommonRouter
