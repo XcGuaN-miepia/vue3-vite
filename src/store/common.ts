@@ -4,7 +4,8 @@ import { createStore, Store } from 'vuex'
 
 const state: {
   menuList: Menu[],
-  tabList: Tab[]
+  tabList: Tab[],
+  currentTab: string
 } = {
   menuList: [{
     path: '/vue3-vite-mirco/test1',
@@ -26,7 +27,8 @@ const state: {
     path: '/vue3-vite-mirco/test3',
     name: '导航3'
   }],
-  tabList: []
+  tabList: [],
+  currentTab: ''
 }
 
 export type CommonStateType = typeof state
@@ -65,6 +67,10 @@ export default createStore<CommonStateType>({
       const index = state.tabList.findIndex(item => item.key === payload)
 
       state.tabList.splice(index, 1)
+    },
+    setCurrentTab(state, payload: string) {
+      state.currentTab = payload
+      console.log(state.currentTab)
     }
   }
 })

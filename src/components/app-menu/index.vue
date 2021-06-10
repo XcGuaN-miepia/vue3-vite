@@ -1,5 +1,6 @@
 <template>
   <el-menu
+    :default-active="currentTab"
     class="menu-container"
     background-color="#001529"
     text-color="#fff"
@@ -55,7 +56,8 @@ import { useRouter } from 'vue-router'
 export default {
   setup() {
     const store = useStore(commonKey)
-    const menuList = store.state.menuList
+    const menuList = store.state.menuList // 菜单列表
+    let currentTab = store.state.currentTab // 当前激活菜单
     const router = useRouter()
 
     /**
@@ -77,16 +79,17 @@ export default {
       }
       const menu = getMenu(menuList)
 
-      console.log(menu)
-
       store.commit('addTabList', {
         key: menu?.path,
         title: menu?.name
       })
+
+      store.commit('setCurrentTab', path)
     }
 
     return {
       menuList,
+      currentTab,
       href
     }
   }

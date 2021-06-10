@@ -9,7 +9,7 @@
       </el-header>
       <el-main>
         <el-tabs
-          v-model="activeTab"
+          v-model="currentTab"
           type="card"
           closable
           @tab-remove="removeTab"
@@ -36,7 +36,6 @@ import AppMenu from '@/components/app-menu/index.vue'
 
 import { key as CommomKey } from '@/store/common'
 import { useStore } from 'vuex'
-import { useRoute } from 'vue-router'
 
 import { registerMicroApps, start } from 'qiankun'
 export default {
@@ -48,7 +47,7 @@ export default {
   setup() {
     const commonStore = useStore(CommomKey)
     const tabs = commonStore.state.tabList // 获取选项卡
-    const activeTab = useRoute().path
+    const currentTab = commonStore.state.currentTab // 当前激活菜单
 
     /**
      * @description: 删除选项卡
@@ -60,7 +59,7 @@ export default {
 
     return {
       tabs,
-      activeTab,
+      currentTab,
       removeTab
     }
   },
