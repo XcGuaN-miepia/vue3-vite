@@ -20,9 +20,9 @@
             :label="item.title"
             :name="item.key"
           />
-          <keep-alive>
+          <router-view>
             <div id="container" />
-          </keep-alive>
+          </router-view>
         </el-tabs>
       </el-main>
       <el-footer>Footer</el-footer>

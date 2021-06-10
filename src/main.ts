@@ -17,4 +17,4 @@ store.forEach(({ module, key }) => {
   app.use(module, key)
 })
 
-app.use(router).use(ElementPlus).mount('#app')
+app.use(router).use(ElementPlus).mount('#main-app')

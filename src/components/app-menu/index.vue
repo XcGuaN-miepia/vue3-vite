@@ -4,7 +4,7 @@
     background-color="#001529"
     text-color="#fff"
     active-text-color="#409EFF"
-    @select="index => $router.push(index)"
+    @select="href"
   >
     <div class="header">
       <img
@@ -31,8 +31,8 @@
           :key="submenu.path"
           :index="submenu.path"
         >
-          <i :class="`el-icon-${menu.icon}`" />
-          {{ menu.name }}
+          <i :class="`el-icon-${submenu.icon}`" />
+          {{ submenu.name }}
         </el-menu-item>
       </el-submenu>
       <!-- 单菜单 -->
@@ -49,14 +49,45 @@
 
 <script lang="ts">
 import { useStore } from 'vuex'
-import { key as commonKey } from '@/store/common'
+import { key as commonKey, Menu } from '@/store/common'
+import { useRouter } from 'vue-router'
 
 export default {
   setup() {
-    const menuList = useStore(commonKey).state.menuList
+    const store = useStore(commonKey)
+    const menuList = store.state.menuList
+    const router = useRouter()
+
+    /**
+     * @description: 跳转
+     * @param {string} path
+     * @param {string[]} indexPath
+     */
+    const href = function(path: string, indexPath: string[]) {
+      router.push(path)
+
+      const getMenu = (list: Menu[], index: number = 0): Menu | undefined => {
+        const menu = list.find(item => item.path === indexPath[index])
+
+        if(indexPath.length === index + 1) {
+          return menu
+        } else if(menu?.children) {
+          return getMenu(menu.children, index + 1)
+        }
+      }
+      const menu = getMenu(menuList)
+
+      console.log(menu)
+
+      store.commit('addTabList', {
+        key: menu?.path,
+        title: menu?.name
+      })
+    }
 
     return {
-      menuList
+      menuList,
+      href
     }
   }
 }

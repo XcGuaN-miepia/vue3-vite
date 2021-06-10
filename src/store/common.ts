@@ -7,23 +7,23 @@ const state: {
   tabList: Tab[]
 } = {
   menuList: [{
-    path: '/test1',
+    path: '/vue3-vite-mirco/test1',
     name: '导航1',
     children: [{
-      path: '/test1/tt1',
+      path: '/vue3-vite-mirco/test1/tt1',
       name: '菜单1'
     }, {
-      path: '/test1/tt2',
+      path: '/vue3-vite-mirco/test1/tt2',
       name: '菜单2'
     }, {
-      path: '/test1/tt3',
+      path: '/vue3-vite-mirco/test1/tt3',
       name: '菜单2'
     }]
   }, {
-    path: '/test2',
+    path: '/vue3-vite-mirco/test2',
     name: '导航2'
   }, {
-    path: '/test3',
+    path: '/vue3-vite-mirco/test3',
     name: '导航3'
   }],
   tabList: []
