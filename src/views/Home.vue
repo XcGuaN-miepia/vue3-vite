@@ -9,10 +9,11 @@
       </el-header>
       <el-main>
         <el-tabs
-          v-model="currentTab"
+          :model-value="currentTab"
           type="card"
           closable
           @tab-remove="removeTab"
+          @tab-click="clickTab"
         >
           <el-tab-pane
             v-for="item in tabs"
@@ -38,6 +39,7 @@ import { key as CommomKey } from '@/store/common'
 import { useStore } from 'vuex'
 
 import { registerMicroApps, start } from 'qiankun'
+import { computed } from '@vue/runtime-core'
 export default {
   name: 'Home',
   components: {
@@ -46,21 +48,23 @@ export default {
   },
   setup() {
     const commonStore = useStore(CommomKey)
-    const tabs = commonStore.state.tabList // 获取选项卡
-    const currentTab = commonStore.state.currentTab // 当前激活菜单
-
     /**
      * @description: 删除选项卡
      * @param {string} tab
      */
-    const removeTab = function(tab: string) {
+    const removeTab = (tab: string) => {
       commonStore.commit('removeTabList', tab)
     }
 
+    const clickTab = (tab: any) => {
+      commonStore.commit('setCurrentTab', tab.props.name)
+    }
+
     return {
-      tabs,
-      currentTab,
-      removeTab
+      tabs: computed(() => commonStore.state.tabList), // 获取选项卡
+      currentTab: computed(() => commonStore.state.currentTab), // 获取当前选项卡
+      removeTab,
+      clickTab
     }
   },
   mounted() {

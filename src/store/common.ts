@@ -70,7 +70,6 @@ export default createStore<CommonStateType>({
     },
     setCurrentTab(state, payload: string) {
       state.currentTab = payload
-      console.log(state.currentTab)
     }
   }
 })

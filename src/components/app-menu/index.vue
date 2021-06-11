@@ -52,12 +52,12 @@
 import { useStore } from 'vuex'
 import { key as commonKey, Menu } from '@/store/common'
 import { useRouter } from 'vue-router'
+import { computed } from '@vue/runtime-core'
 
 export default {
   setup() {
-    const store = useStore(commonKey)
-    const menuList = store.state.menuList // 菜单列表
-    let currentTab = store.state.currentTab // 当前激活菜单
+    const commonStore = useStore(commonKey)
+    const menuList = commonStore.state.menuList // 菜单列表
     const router = useRouter()
 
     /**
@@ -79,17 +79,17 @@ export default {
       }
       const menu = getMenu(menuList)
 
-      store.commit('addTabList', {
+      commonStore.commit('addTabList', {
         key: menu?.path,
         title: menu?.name
       })
 
-      store.commit('setCurrentTab', path)
+      commonStore.commit('setCurrentTab', path)
     }
 
     return {
       menuList,
-      currentTab,
+      currentTab: computed(() => commonStore.state.currentTab), // 获取当前选项卡
       href
     }
   }
