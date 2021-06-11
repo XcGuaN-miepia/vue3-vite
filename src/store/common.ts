@@ -9,17 +9,17 @@ const state: {
 } = {
   menuList: [{
     path: '/vue3-vite-mirco/test1',
-    name: '导航1',
-    children: [{
-      path: '/vue3-vite-mirco/test1/tt1',
-      name: '菜单1'
-    }, {
-      path: '/vue3-vite-mirco/test1/tt2',
-      name: '菜单2'
-    }, {
-      path: '/vue3-vite-mirco/test1/tt3',
-      name: '菜单2'
-    }]
+    name: '导航1'
+    // children: [{
+    //   path: '/vue3-vite-mirco/test1/tt1',
+    //   name: '菜单1'
+    // }, {
+    //   path: '/vue3-vite-mirco/test1/tt2',
+    //   name: '菜单2'
+    // }, {
+    //   path: '/vue3-vite-mirco/test1/tt3',
+    //   name: '菜单2'
+    // }]
   }, {
     path: '/vue3-vite-mirco/test2',
     name: '导航2'
@@ -67,6 +67,7 @@ export default createStore<CommonStateType>({
       const index = state.tabList.findIndex(item => item.key === payload)
 
       state.tabList.splice(index, 1)
+      state.currentTab = state.tabList[state.tabList.length - 1].key
     },
     setCurrentTab(state, payload: string) {
       state.currentTab = payload

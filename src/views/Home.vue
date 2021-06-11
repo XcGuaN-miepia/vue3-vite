@@ -38,8 +38,9 @@ import AppMenu from '@/components/app-menu/index.vue'
 import { key as CommomKey } from '@/store/common'
 import { useStore } from 'vuex'
 
-import { registerMicroApps, start } from 'qiankun'
+import { loadMicroApp, registerMicroApps, start } from 'qiankun'
 import { computed } from '@vue/runtime-core'
+import { useRouter } from 'vue-router'
 export default {
   name: 'Home',
   components: {
@@ -48,21 +49,39 @@ export default {
   },
   setup() {
     const commonStore = useStore(CommomKey)
+    const router = useRouter()
+    const tabs = computed(() => commonStore.state.tabList) // 获取选项卡
+    const currentTab = computed(() => commonStore.state.currentTab) // 获取当前选项卡
     /**
      * @description: 删除选项卡
      * @param {string} tab
      */
     const removeTab = (tab: string) => {
       commonStore.commit('removeTabList', tab)
+      router.push(currentTab.value)
+
+      loadMicroApp({
+        name: 'admin',
+        entry: 'http://139.198.186.30/vue3-vite-mirco/',
+        container: '#container',
+        props: {
+          tabs: commonStore.state.tabList
+        }
+      })
     }
 
+    /**
+     * @description: 选择菜单
+     * @param {any} tab
+     */
     const clickTab = (tab: any) => {
       commonStore.commit('setCurrentTab', tab.props.name)
+      router.push(tab.props.name)
     }
 
     return {
-      tabs: computed(() => commonStore.state.tabList), // 获取选项卡
-      currentTab: computed(() => commonStore.state.currentTab), // 获取当前选项卡
+      tabs,
+      currentTab,
       removeTab,
       clickTab
     }
