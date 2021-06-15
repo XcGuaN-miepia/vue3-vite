@@ -69,6 +69,11 @@ export default createStore<CommonStateType>({
       state.tabList.splice(index, 1)
       state.currentTab = state.tabList[state.tabList.length - 1].key
     },
+    /**
+     * @description: 设置当前选项卡
+     * @param {*} state
+     * @param {string} payload
+     */
     setCurrentTab(state, payload: string) {
       state.currentTab = payload
     }
