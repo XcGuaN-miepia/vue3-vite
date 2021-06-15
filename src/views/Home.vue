@@ -20,10 +20,13 @@
             :key="item.key"
             :label="item.title"
             :name="item.key"
-          />
-          <router-view>
-            <div id="container" />
-          </router-view>
+          >
+            <router-view>
+              <keep-alive>
+                <div :id="`container${title2decode(item.title)}`" />
+              </keep-alive>
+            </router-view>
+          </el-tab-pane>
         </el-tabs>
       </el-main>
       <el-footer>Footer</el-footer>
@@ -38,8 +41,7 @@ import AppMenu from '@/components/app-menu/index.vue'
 import { key as CommomKey } from '@/store/common'
 import { useStore } from 'vuex'
 
-import { MicroAppStateActions, registerMicroApps, start } from 'qiankun'
-import { computed, getCurrentInstance, unref, watch } from '@vue/runtime-core'
+import { computed } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
 export default {
   name: 'Home',
@@ -48,18 +50,11 @@ export default {
     AppMenu
   },
   setup() {
-    const instance = getCurrentInstance()
-    const qiankun: MicroAppStateActions = instance?.appContext.config.globalProperties.$qiankun
     const commonStore = useStore(CommomKey)
     const router = useRouter()
     const tabs = computed(() => commonStore.state.tabList) // 获取选项卡
     const currentTab = computed(() => commonStore.state.currentTab) // 获取当前选项卡
 
-    watch(currentTab, () => {
-      qiankun.setGlobalState({
-        tabs: unref(tabs)
-      })
-    }) // 监听tabs变化
     /**
      * @description: 删除选项卡
      * @param {string} tab
@@ -78,24 +73,34 @@ export default {
       router.push(tab.props.name)
     }
 
+    /**
+     * @description: 中文名修改成编码
+     * @param {string} title
+     * @return {string}
+     */
+    const title2decode = (title: string): string => {
+      return decodeURIComponent(title)
+    }
+
     return {
       tabs,
       currentTab,
       removeTab,
-      clickTab
+      clickTab,
+      title2decode
     }
   },
   mounted() {
-    registerMicroApps([
-      {
-        name: 'admin',
-        entry: 'http://139.198.186.30/vue3-vite-mirco/',
-        container: '#container',
-        activeRule: '/'
-      }
-    ])
-    // 启动 qiankun
-    start()
+    // registerMicroApps([
+    //   {
+    //     name: 'admin',
+    //     entry: 'http://139.198.186.30/vue3-vite-mirco/',
+    //     container: '#container',
+    //     activeRule: '/'
+    //   }
+    // ])
+    // // 启动 qiankun
+    // start()
   }
 }
 </script>
