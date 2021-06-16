@@ -23,7 +23,7 @@
           >
             <router-view>
               <keep-alive>
-                <div :id="`container${title2decode(item.title)}`" />
+                <div :id="`container${title2decode(String(item.title))}`" />
               </keep-alive>
             </router-view>
           </el-tab-pane>
