@@ -43,7 +43,7 @@ export interface Menu {
   children?: Menu[]
 }
 
-export const key: InjectionKey<Store<CommonStateType>> = Symbol()
+export const key: InjectionKey<Store<CommonStateType>> = Symbol('common')
 
 export default createStore<CommonStateType>({
   state,

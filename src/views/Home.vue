@@ -38,6 +38,9 @@
 import AppHeader from '@/components/app-header/index.vue'
 import AppMenu from '@/components/app-menu/index.vue'
 
+import store from '@/store'
+import { toRaw } from 'vue'
+
 import { key as CommomKey } from '@/store/common'
 import { useStore } from 'vuex'
 
@@ -89,6 +92,17 @@ export default {
       clickTab,
       title2decode
     }
+  },
+  created() {
+    window.addEventListener('beforeunload', () => {
+      localStorage.setItem(String(CommomKey.description), JSON.stringify((toRaw(useStore(CommomKey).state))))
+
+      // store.forEach(item => {
+      //   alert(JSON.stringify((useStore(item.key).state)))
+
+      //   sessionStorage.setItem(String(item.key.description), JSON.stringify((toRaw(useStore(CommomKey).state))))
+      // })
+    })
   },
   mounted() {
     // registerMicroApps([
