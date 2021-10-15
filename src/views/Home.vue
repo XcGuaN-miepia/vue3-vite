@@ -4,6 +4,8 @@
       <app-menu />
     </el-aside>
     <el-container>
+      <div id="container" />
+
       <el-header>
         <app-header />
       </el-header>
@@ -21,9 +23,10 @@
             :label="item.title"
             :name="item.key"
           >
+            <!-- <div :id="`container${title2decode(String(item.title))}`" /> -->
             <router-view>
               <keep-alive>
-                <div :id="`container${title2decode(String(item.title))}`" />
+                <div id="container" />
               </keep-alive>
             </router-view>
           </el-tab-pane>
@@ -46,6 +49,7 @@ import { useStore } from 'vuex'
 
 import { computed } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
+import { registerMicroApps, start } from 'qiankun'
 export default {
   name: 'Home',
   components: {
@@ -105,16 +109,16 @@ export default {
     })
   },
   mounted() {
-    // registerMicroApps([
-    //   {
-    //     name: 'admin',
-    //     entry: 'http://139.198.186.30/vue3-vite-mirco/',
-    //     container: '#container',
-    //     activeRule: '/'
-    //   }
-    // ])
-    // // 启动 qiankun
-    // start()
+    registerMicroApps([
+      {
+        name: 'admin',
+        entry: '//localhost:3001/vue3-vite-mirco',
+        container: '#container',
+        activeRule: '/'
+      }
+    ])
+    // 启动 qiankun
+    start()
   }
 }
 </script>
