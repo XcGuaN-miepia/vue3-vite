@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 module.exports = {
   'env': {
     'browser': true,
@@ -9,9 +8,7 @@ module.exports = {
     'plugin:vue/vue3-recommended'
   ],
   'parserOptions': {
-    'parser': 'babel-eslint',
-    'ecmaVersion': 6,
-    'sourceType': 'module'
+    'parser': '@typescript-eslint/parser'
   },
   'plugins': [
     'vue'
@@ -33,6 +30,13 @@ module.exports = {
     'space-before-blocks': ['error'], // {} 前必须有空格，例如 function() {}
     'camelcase': ['error', { 'properties': 'never' }], // 驼峰变量命名，而且属性名不会要求是驼峰，变量名要求是
     'padded-blocks': ['error', 'never'], // 行内不能有空行
-    'comma-dangle': ['error', 'never'] // 对象最后不允许拖尾逗号
+    'comma-dangle': ['error', 'never'], // 对象最后不允许拖尾逗号
+    'vue/no-mutating-props': 'off', // 允许直接使用v-model绑定
+    'space-infix-ops': 'error', // 操作符左右必须有空格
+    'arrow-spacing': ['error', {
+      before: true,
+      after: true
+    }], // 箭头函数箭头前后必须有空格
+    'vue/no-use-v-if-with-v-for': 'off' // vue3允许v-if v-for同个组件
   }
 }

@@ -53,7 +53,6 @@ import { useStore } from 'vuex'
 import { key as commonKey, Menu } from '@/store/common'
 import { useRouter } from 'vue-router'
 import { computed } from '@vue/runtime-core'
-import { loadMicroApp } from 'qiankun'
 
 export default {
   setup() {
@@ -86,18 +85,6 @@ export default {
       })
 
       commonStore.commit('setCurrentTab', path)
-
-      const container = document.querySelector(`#container${decodeURIComponent(String(menu?.name))}`)
-
-      if(container && container.childElementCount > 0) {
-        return
-      }
-
-      loadMicroApp({
-        name: String(menu?.name),
-        entry: `http://139.198.186.30${String(menu?.path)}`,
-        container: `#container${decodeURIComponent(String(menu?.name))}`
-      })
     }
 
     return {

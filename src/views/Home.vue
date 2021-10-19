@@ -23,15 +23,20 @@
             :label="item.title"
             :name="item.key"
           >
-            <!-- <div :id="`container${title2decode(String(item.title))}`" /> -->
-            <router-view>
-              <keep-alive>
-                <div id="container" />
-              </keep-alive>
-            </router-view>
+            {{ item.key }}
+            <!-- <router-view>
+              <keep-alive> -->
+            <micro-app-view
+              :config="{ name: 'admin', entry: `//localhost:3001${item.key}`, activeRule: '/' }"
+            />
+            <!-- </keep-alive>
+            </router-view> -->
           </el-tab-pane>
         </el-tabs>
       </el-main>
+      <!-- <micro-app-view
+        :config="{ name: 'admin', entry: `//localhost:3001/vue3-vite-mirco/`, activeRule: '/' }"
+      /> -->
       <el-footer>Footer</el-footer>
     </el-container>
   </el-container>
@@ -40,6 +45,7 @@
 <script lang="ts">
 import AppHeader from '@/components/app-header/index.vue'
 import AppMenu from '@/components/app-menu/index.vue'
+import MicroAppView from '@/components/micro-app-view/index.vue'
 
 import store from '@/store'
 import { toRaw } from 'vue'
@@ -49,12 +55,13 @@ import { useStore } from 'vuex'
 
 import { computed } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
-import { registerMicroApps, start } from 'qiankun'
+
 export default {
   name: 'Home',
   components: {
     AppHeader,
-    AppMenu
+    AppMenu,
+    MicroAppView
   },
   setup() {
     const commonStore = useStore(CommomKey)
@@ -107,18 +114,6 @@ export default {
       //   sessionStorage.setItem(String(item.key.description), JSON.stringify((toRaw(useStore(CommomKey).state))))
       // })
     })
-  },
-  mounted() {
-    registerMicroApps([
-      {
-        name: 'admin',
-        entry: '//localhost:3001/vue3-vite-mirco',
-        container: '#container',
-        activeRule: '/'
-      }
-    ])
-    // 启动 qiankun
-    start()
   }
 }
 </script>
